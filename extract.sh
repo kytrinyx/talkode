@@ -22,7 +22,7 @@ main() {
 
 colorize() {
     infile=$3
-    outfile=$2_$3.rtf
+    outfile=$3_$2.rtf
     pygmentize -O style=$style -f rtf $infile > $outdir/$outfile
 }
 
