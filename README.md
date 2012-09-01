@@ -10,6 +10,13 @@ The filename of the output is:
 
 ## Pygments
 
+I installed pygments like this:
+
+    sudo easy_install Pygments
+
+There are other ways of doing so, see [Jekyll's Wiki](https://github.com/mojombo/jekyll/wiki/Install)
+(just scroll down to the part about python and pygments).
+
 I've included a pygments style file that I'm calling 'presentation'.
 It's based off the syntax highlighting scheme on github.
 
@@ -28,5 +35,4 @@ color scheme, and also has some colors for slides that represent terminal output
 ## Usage
 
     /path/to/extract.sh abcdef..HEAD~3 presentation /tmp/code_output
-
 
