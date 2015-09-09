@@ -1,4 +1,8 @@
 #!/usr/bin/env ruby
+# This is a mostly procedural installation script for talkode.
+# See the readme for details.
+
+OSX_COLORS = "#{ENV['HOME']}/Library/Colors"
 
 TALKODE_FILES = {
   style:      "presentation.py",
@@ -19,12 +23,15 @@ def style_dir
   style_dir.chomp
 end
 
-def make_talkode_dir
-  if File.exists?(TALKODE_PATH)
-    puts "Talkode directory already exists"
-  else
+def make_dirs
+  unless File.exists?(TALKODE_PATH)
     puts "Making #{TALKODE_PATH}"
     puts `mkdir -p #{TALKODE_PATH}`
+  end
+
+  unless File.exists?(OSX_COLORS)
+    puts "Making #{OSX_COLORS}"
+    `mkdir -p #{OSX_COLORS}`
   end
 end
 
@@ -35,10 +42,14 @@ def copy_talkode_files
   end
 end
 
-def link_style(style_dir)
+def link_styles(style_dir)
+  puts "Linking #{TALKODE_FILES[:style]}"
   `ln -s #{TALKODE_PATH}/#{TALKODE_FILES[:style]} #{style_dir}/`
+
+  puts "Linking #{OSX_COLORS}"
+  `ln -s #{TALKODE_PATH}/#{TALKODE_FILES[:keynote]} #{OSX_COLORS}/`
 end
 
-make_talkode_dir
+make_dirs
 copy_talkode_files
-link_style(style_dir)
+link_styles(style_dir)
