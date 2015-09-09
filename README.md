@@ -38,19 +38,17 @@ The filename of the output is:
 
 ## Pygments
 
-I installed pygments like this:
+I installed pygments for the Python interpreter like this:
 
     sudo easy_install Pygments
+
+If you are using Python via Homebrew, then the command is
+
+   easy_install Pygments
 
 There are other ways of doing so, see [Jekyll's Wiki](https://github.com/mojombo/jekyll/wiki/Install)
 (just scroll down to the part about python and pygments).
 
-I've included a pygments style file that I'm calling 'presentation'.
-It's based off the syntax highlighting scheme on github.
-
-Put this in your pygments style folder. I found mine at:
-
-    /Library/Python/2.7/site-packages/Pygments-1.6rc1-py2.7.egg/pygments/styles/
 
 ## Keynote colors
 
