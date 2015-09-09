@@ -1,7 +1,7 @@
 #!/bin/bash
 
 target_dir="colorized"
-font_name="Source Code Pro"
+font_name="Courier New"
 style_name="presentation"
 format="rtf"
 
