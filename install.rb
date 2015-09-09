@@ -13,13 +13,37 @@ TALKODE_FILES = {
 
 TALKODE_PATH = "#{ENV['HOME']}/.talkode"
 
+def python_not_installed
+  puts <<-EOP
+    I could not find python on your system via `which python`.
+
+    If it's installed, it's not in your PATH variable.
+
+    You can install python via Homebrew or APT.
+
+      OS X:   `brew update && brew install python`
+      Ubuntu: `apt-get update && apt-get install python`
+  EOP
+end
+
+def pygments_not_installed
+  puts <<-EOP
+    You should install pygments via `easy_install Pygments`.
+
+    If you are using OS X's build-in python interpreter, you
+    will need to preface the above command with "sudo".
+  EOP
+end
+
 def style_dir
+  puts "Looking for your python installation"
   python_path = `which python`
-  raise "You must have python installed" unless python_path
+  raise python_not_installed unless python_path
   path_regex = /\A(?<find_path>\/[^\/]+\/[^\/]+)/
   find_path = python_path.match(path_regex)[:find_path]
+  puts "Looking for your pygments installation. This might take a minute."
   style_dir = `find #{find_path} -type d -ipath '*pygments/styles*' -print`
-  raise "Could not find pygments style directory. Have you installed pygments?" unless style_dir
+  raise pygments_not_installed unless style_dir
   style_dir.chomp
 end
 
