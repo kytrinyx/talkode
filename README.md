@@ -6,7 +6,7 @@ into your copy buffer and then just paste it into keynote.
 
 That essentially looks like this:
 
-```plain
+```bash
 pbpaste | pygmentize -l ruby -f rtf -P style=presentation -P fontface="Source Code Pro" | pbcopy
 ```
 
@@ -46,8 +46,9 @@ If you are using Python via Homebrew, then the command is
 
    easy_install Pygments
 
-There are other ways of doing so, see [Jekyll's Wiki](https://github.com/mojombo/jekyll/wiki/Install)
-(just scroll down to the part about python and pygments).
+There are other ways of installing Pygments, so see [Jekyll's
+Wiki](https://github.com/mojombo/jekyll/wiki/Install) (just scroll down to the
+part about python and pygments).
 
 
 ## Keynote colors
@@ -56,3 +57,8 @@ I made a color palette for keynote that matches the `presentation.py`
 color scheme, and also has some colors for slides that represent terminal output.
 
     ~/Library/Colors/Programming.clr
+
+These colors are in fact not just for Keynote. They are available in all your
+OS X applications that allow you to access the color palette provided by the
+system. Choose the color list tab in the colors dialog and click on the
+settings to open up the file in `~/Library/Colors`.
