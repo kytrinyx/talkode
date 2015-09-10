@@ -24,8 +24,7 @@ function colorize() {
   pygmentize -l $lexer -P $style -P "$font" -f $format -o $outfile $file
   if [ -e "$gdrive" ]
   then
-    # Upload to Google Drive "Syntax Highlighting" folder
-    gdrive upload -p 0B3wQtUcwN0sYenZHQmR2YkZaYzQ -f "$outfile"
+    gdrive upload ${TALKODE_GDRIVE_OPTIONS} -f "$outfile"
   fi
 }
 
