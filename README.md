@@ -26,6 +26,13 @@ reliably. You have to use `colorize.sh` to create an RTF document, import the
 RTF document into Google Drive, then copy and paste from that document into
 slides or other documents.
 
+#### Google Drive support
+
+If you put the appropriate binary of the [gdrive CLI
+client](https://github.com/wyncode/gdrive) in your path as `gdrive`, the
+`colorize.sh` script will automatically upload the colorized file to Google
+Drive for you.
+
 ## Other applications
 
 Sometimes you want to walk through an entire git history

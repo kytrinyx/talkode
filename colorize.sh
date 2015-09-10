@@ -8,6 +8,8 @@ format="rtf"
 style="style=${style_name}"
 font="fontface=${font_name}"
 
+gdrive=`which gdrive`
+
 mkdir -p $target_dir
 
 function colorize_all() {
@@ -26,6 +28,11 @@ function colorize() {
   filename=$(basename $file $extension)${extension}.rtf
   outfile="${target_dir}/${filename}"
   pygmentize -l $lexer -P $style -P "$font" -f $format -o $outfile $file
+  if [ -e "$gdrive" ]
+  then
+    # Upload to Google Drive "Syntax Highlighting" folder
+    gdrive upload -p 0B3wQtUcwN0sYenZHQmR2YkZaYzQ -f "$outfile"
+  fi
 }
 
 # colorize_all "ruby" ".rb"
