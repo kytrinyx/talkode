@@ -12,19 +12,13 @@ gdrive=`which gdrive`
 
 mkdir -p $target_dir
 
-function colorize_all() {
-  lexer=$1
-  extension=$2
-  for file in `ls -1 . | grep ${extension}`
-  do
-    colorize "${file}" "${lexer}" "${extension}"
-  done
-}
 
 function colorize() {
   file=$1
-  lexer=$2
-  extension=$3
+  case "$file" in
+    *.rb) lexer="ruby"; extension=".rb" ;;
+    *.js) lexer="js"; extension=".js" ;;
+  esac
   filename=$(basename $file $extension)${extension}.rtf
   outfile="${target_dir}/${filename}"
   pygmentize -l $lexer -P $style -P "$font" -f $format -o $outfile $file
@@ -35,6 +29,9 @@ function colorize() {
   fi
 }
 
-# colorize_all "ruby" ".rb"
-# colorize_all "js" ".js"
-colorize "$1" "ruby" ".rb"
+while (( "$#" ))
+do
+  echo $1
+  colorize "$1"
+  shift
+done

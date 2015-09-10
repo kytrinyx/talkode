@@ -2,6 +2,31 @@
 
 Syntax highlighting in your presentations.
 
+Talkode provides several tools to simplify highlighting and colorizing syntax
+in presentations.
+
+## `colorize.sh`
+
+### Synopsis
+
+    colorize.sh FILE1 [FILE2, …]
+
+### Description
+
+`colorize.sh` batch colorizes Ruby and JavaScript files.
+
+Given a file in Ruby or JavaScript with either the `.rb` or `.js` extension,
+`colorize.sh` will colorize the file and output it as an RTF document. It will
+optionally upload the file to Google Drive if you have the `gdrive` Google
+Drive CLI client installed and configured. (Details below)
+
+### Google Drive support
+
+If you put the appropriate binary of the [gdrive CLI
+client](https://github.com/wyncode/gdrive) in your path as `gdrive`, the
+`colorize.sh` script will automatically upload the colorized file to Google
+Drive for you.
+
 ## Simple highlighting
 
 ### Keynote
@@ -25,13 +50,6 @@ Google Slides makes this a bit harder. Copy and pasting just doesn't work
 reliably. You have to use `colorize.sh` to create an RTF document, import the
 RTF document into Google Drive, then copy and paste from that document into
 slides or other documents.
-
-#### Google Drive support
-
-If you put the appropriate binary of the [gdrive CLI
-client](https://github.com/wyncode/gdrive) in your path as `gdrive`, the
-`colorize.sh` script will automatically upload the colorized file to Google
-Drive for you.
 
 ## Other applications
 
