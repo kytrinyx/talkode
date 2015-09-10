@@ -10,16 +10,24 @@ font="fontface=${font_name}"
 
 mkdir -p $target_dir
 
-function colorize() {
+function colorize_all() {
   lexer=$1
   extension=$2
   for file in `ls -1 . | grep ${extension}`
   do
-    filename=$(basename $file $extension).${extension}.rtf
-    outfile="${target_dir}/${filename}"
-    pygmentize -l $lexer -P $style -P "$font" -f $format -o $outfile $file
+    colorize "${file}" "${lexer}" "${extension}"
   done
 }
 
-colorize "ruby" ".rb"
-colorize "js" ".js"
+function colorize() {
+  file=$1
+  lexer=$2
+  extension=$3
+  filename=$(basename $file $extension)${extension}.rtf
+  outfile="${target_dir}/${filename}"
+  pygmentize -l $lexer -P $style -P "$font" -f $format -o $outfile $file
+}
+
+# colorize_all "ruby" ".rb"
+# colorize_all "js" ".js"
+colorize "$1" "ruby" ".rb"
