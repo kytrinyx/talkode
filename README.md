@@ -20,12 +20,20 @@ Given a file in Ruby or JavaScript with either the `.rb` or `.js` extension,
 optionally upload the file to Google Drive if you have the `gdrive` Google
 Drive CLI client installed and configured. (Details below)
 
+
 ### Google Drive support
 
-If you put the appropriate binary of the [gdrive CLI
-client](https://github.com/wyncode/gdrive) in your path as `gdrive`, the
-`colorize.sh` script will automatically upload the colorized file to Google
-Drive for you.
+`colorize.sh` supports Google Drive uploads via the [gdrive CLI client](https://github.com/wyncode/gdrive).
+
+- Put the appropriate binary of the `gdrive` CLI tool in your path as `gdrive`.
+- Run `gdrive` to go through the authentication process with Google Drive.
+- Create a folder on Google Drive for your colorized output files.
+- Set your shell variable `TALKODE_GDRIVE_OPTIONS="-p YOUR_GOOGLE_DRIVE_FOLDER_ID"`.
+
+the `colorize.sh` script will automatically upload the colorized RTF file to Google Drive.
+
+Once the file is uploaded into the folder, right-click to open it in Google Docs, and it will convert the RTF to the Google Docs format. See more details below under "Google Slides".
+
 
 ## Simple highlighting
 
