@@ -1,19 +1,67 @@
 # Talkode
 
+Syntax highlighting in your presentations.
+
+Talkode provides several tools to simplify highlighting and colorizing syntax
+in presentations.
+
+## `colorize.sh`
+
+### Synopsis
+
+    colorize.sh FILE1 [FILE2, …]
+
+### Description
+
+`colorize.sh` batch colorizes Ruby and JavaScript files.
+
+Given a file in Ruby or JavaScript with either the `.rb` or `.js` extension,
+`colorize.sh` will colorize the file and output it as an RTF document. It will
+optionally upload the file to Google Drive if you have the `gdrive` Google
+Drive CLI client installed and configured. (Details below)
+
+
+### Google Drive support
+
+`colorize.sh` supports Google Drive uploads via the [gdrive CLI client](https://github.com/wyncode/gdrive).
+
+- Put the appropriate binary of the `gdrive` CLI tool in your path as `gdrive`.
+- Run `gdrive` to go through the authentication process with Google Drive.
+- Create a folder on Google Drive for your colorized output files.
+- Set your shell variable `TALKODE_GDRIVE_OPTIONS="-p YOUR_GOOGLE_DRIVE_FOLDER_ID"`.
+
+the `colorize.sh` script will automatically upload the colorized RTF file to Google Drive.
+
+Once the file is uploaded into the folder, right-click to open it in Google Docs, and it will convert the RTF to the Google Docs format. See more details below under "Google Slides".
+
+
+## Simple highlighting
+
+### Keynote
+
 The easiest way to get syntax-highlighted code in keynote slides, in my opinion,
 is copy the code so it's in your paste buffer, then pipe it through pygmentize
 into your copy buffer and then just paste it into keynote.
 
 That essentially looks like this:
 
-```plain
+```bash
 pbpaste | pygmentize -l ruby -f rtf -P style=presentation -P fontface="Source Code Pro" | pbcopy
 ```
 
 The `-P style=presentation` bit says use the color highlighting scheme called
 `presentation`, which refers to the python file in this project.
 
-On the other hand, sometimes you want to walk through an entire git history
+### Google Slides
+
+Google Slides makes this a bit harder. Copy and pasting just doesn't work
+reliably. You have to use `colorize.sh` to create an RTF document, import the
+RTF document into Google Drive, then copy and paste from that document into
+slides or other documents.
+
+## Other applications
+
+Sometimes you want to walk through an entire git history
 and colorize each step, or batch colorize a bunch of files.
 
 Take a look at `extract.sh` and `colorize.sh` for a very hacky approach to doing that.
@@ -38,19 +86,17 @@ The filename of the output is:
 
 ## Pygments
 
-I installed pygments like this:
+I installed pygments for the Python interpreter like this:
 
     sudo easy_install Pygments
 
-There are other ways of doing so, see [Jekyll's Wiki](https://github.com/mojombo/jekyll/wiki/Install)
-(just scroll down to the part about python and pygments).
+If you are using Python via Homebrew, then the command is
 
-I've included a pygments style file that I'm calling 'presentation'.
-It's based off the syntax highlighting scheme on github.
+   easy_install Pygments
 
-Put this in your pygments style folder. I found mine at:
-
-    /Library/Python/2.7/site-packages/Pygments-1.6rc1-py2.7.egg/pygments/styles/
+There are other ways of installing Pygments, so see [Jekyll's
+Wiki](https://github.com/mojombo/jekyll/wiki/Install) (just scroll down to the
+part about python and pygments).
 
 ## Keynote colors
 
@@ -58,3 +104,8 @@ I made a color palette for keynote that matches the `presentation.py`
 color scheme, and also has some colors for slides that represent terminal output.
 
     ~/Library/Colors/Programming.clr
+
+These colors are in fact not just for Keynote. They are available in all your
+OS X applications that allow you to access the color palette provided by the
+system. Choose the color list tab in the colors dialog and click on the
+settings to open up the file in `~/Library/Colors`.
